@@ -1,0 +1,21 @@
+image:
+  repository: nginx
+  version: latest
+replicasCount: 3
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30000
+labels:
+  type1: app
+  value1: nginx
+pv:
+  name: mypv
+  storageClassName: index
+  storage: 10M
+nfs:
+  server: 192.168.57.50
+  path: /srv/exports/nginx
+pvc:
+  name: mypvc
+  storage: 10M

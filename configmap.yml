@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello
+data:
+  clef: |
+    Bonjour
+    Cyprien
+    le plus beau

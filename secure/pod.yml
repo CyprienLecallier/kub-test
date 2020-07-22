@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+spec:
+  serviceAccountName: cyprien
+  containers:
+  - name: myalpine
+    image: alpine
+    command:
+    - sleep
+    - "10000"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: token
+
+  volumes:
+  - name: token
+    secret:
+      secretName: cyprien-token-s68qf
+    

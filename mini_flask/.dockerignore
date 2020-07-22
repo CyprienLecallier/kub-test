@@ -1,0 +1,4 @@
+env/*
+nginx.conf
+docker-compose.yml
+test.txt

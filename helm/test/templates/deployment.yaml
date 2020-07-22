@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydeploy
+spec:
+  replicas: {{ .Values.replicasCount }}
+  selector:
+    matchLabels:
+      {{ .Values.labels.type1 | indent 6 }}: {{ .Values.labels.value1}}
+  template:
+    metadata:
+      labels:
+        {{ .Values.labels.type1 | indent 6 }}: {{ .Values.labels.value1}}
+    spec:
+      containers:
+      - name: {{ .Chart.Name}}
+        image: {{ .Values.image.repository }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: myvolume
+
+      volumes:
+      - name: myvolume
+        persistentVolumeClaim:
+          claimName: {{ .Values.pvc.name }}
